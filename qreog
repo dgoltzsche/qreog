@@ -1,0 +1,6 @@
+#!/bin/bash
+[ $# -eq 0 ] && { echo "Usage: $0 <string>"; exit 1; }
+RAND=`cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 8 | head -n 1`
+FILE="/tmp/QR$RAND.png"
+echo "$@" | qrencode -o $FILE
+eog $FILE
